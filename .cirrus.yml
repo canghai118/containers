@@ -1,6 +1,10 @@
 docker_builder:
   env:
+    DOCKER_USERNAME: ENCRYPTED[11985f40842b9a112330fbc12ad5cdc1cc0ad0340dd5953ce5be772aec9d03930c26faa374f985dc1bf55138fe221d8b]
+    DOCKER_PASSWORD: ENCRYPTED[ae67a707e3c958b123f53831a4b0df1364be573c16aa322e29e64aa94c4ca271397a84b63a351e9880852269770885b9]
     matrix:
       - CONTAINER: php-dev
   script:
-    - docker build -t $CONTAINER images/$CONTAINER
+    - docker build -t canghai/$CONTAINER images/$CONTAINER
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - docker push canghai/$CONTAINER
